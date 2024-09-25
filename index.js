@@ -8,7 +8,11 @@ app.use(express.json());
 
 
 const client = new Client({
-    authStrategy: new LocalAuth({ clientId: 'new_session' }), // This will persist the session data
+    authStrategy: new LocalAuth({ clientId: 'new_session' }),
+    puppeteer: {
+        headless: true, // Run in headless mode
+        args: ['--no-sandbox', '--disable-setuid-sandbox'] // Add arguments if needed
+    } // This will persist the session data
 });
 
 let isClientReady = false;
